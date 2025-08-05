@@ -1,0 +1,27 @@
+# Include all Python source files
+recursive-include src/pyhspf *.py
+
+# Include HSPF source files needed for compilation (for sdist only)
+recursive-include src/hspf13 *.f
+recursive-include src/hspf13 *.c
+recursive-include src/hspf13 *.inc
+
+# Include data files
+include src/pyhspf/core/hspfmsg.wdm
+include src/pyhspf/core/attributes
+
+# Include documentation and configuration files
+include README.md
+include license
+include pyproject.toml
+include setup.py
+
+# Exclude unnecessary files and directories
+global-exclude *.pyc
+global-exclude *.pyo
+global-exclude *~
+global-exclude .git*
+global-exclude __pycache__
+global-exclude *.egg-info/*
+global-exclude build/*
+global-exclude dist/*

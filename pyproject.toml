@@ -1,0 +1,157 @@
+[build-system]
+requires = [
+    "setuptools>=61.0",
+    "wheel", 
+    "numpy>=1.15.0"
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyhspf"
+version = "0.2.5"
+description = "Python Extensions for utilizing the Hydrological Simulation Program in Fortran (HSPF)"
+readme = "README.md"
+license = {file = "license"}
+authors = [
+    {name = "David Lampert", email = "david.lampert@okstate.edu"}
+]
+maintainers = [
+    {name = "David Lampert", email = "david.lampert@okstate.edu"}
+]
+keywords = [
+    "hydrology",
+    "watershed modeling", 
+    "GIS",
+    "HSPF",
+    "simulation",
+    "fortran"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9", 
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Fortran",
+    "Topic :: Scientific/Engineering :: Hydrology"
+]
+requires-python = ">=3.8"
+
+dependencies = [
+    "numpy>=1.15.0",
+    "scipy>=1.0.0",
+    "matplotlib>=3.0.0"
+]
+
+[project.optional-dependencies]
+preprocessing = [
+    "gdal>=3.0.0",
+    "pyshp>=2.0.0",
+    "Pillow>=8.0.0"
+]
+calibration = [
+    "scipy>=1.5.0",
+    "pandas>=1.0.0"
+]
+forecasting = [
+    "scikit-learn>=0.24.0",
+    "pandas>=1.0.0"
+]
+dev = [
+    "pytest>=6.0",
+    "pytest-cov",
+    "build",
+    "twine",
+    "black",
+    "isort",
+    "flake8"
+]
+all = [
+    "gdal>=3.0.0",
+    "pyshp>=2.0.0",
+    "Pillow>=8.0.0",
+    "scipy>=1.5.0",
+    "pandas>=1.0.0",
+    "scikit-learn>=0.24.0",
+    "pytest>=6.0",
+    "pytest-cov",
+    "build",
+    "twine",
+    "black",
+    "isort",
+    "flake8"
+]
+
+[project.urls]
+Homepage = "https://github.com/djlampert/PyHSPF"
+Documentation = "https://github.com/djlampert/PyHSPF"
+Repository = "https://github.com/djlampert/PyHSPF"
+"Bug Reports" = "https://github.com/djlampert/PyHSPF/issues"
+
+[tool.setuptools]
+zip-safe = false
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["pyhspf*"]
+exclude = ["pyhspf.egg-info*"]
+
+# Development tools configuration
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "--verbose --cov=pyhspf --cov-report=html --cov-report=term"
+
+[tool.coverage.run]
+source = ["src/pyhspf"]
+omit = [
+    "*/tests/*",
+    "*/test_*"
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError"
+]
+
+# Black code formatter configuration
+[tool.black]
+line-length = 88
+target-version = ['py38']
+include = '\.pyi?$'
+
+# isort import sorter configuration  
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+known_first_party = ["pyhspf"]
+
+# Flake8 linter configuration
+[tool.flake8]
+max-line-length = 88
+extend-ignore = ["E203", "W503"]
+exclude = [
+    ".git",
+    "__pycache__",
+    "build",
+    "dist",
+    ".eggs",
+    "*.egg-info",
+    ".tox",
+    ".venv",
+    "src/hspf13"
+]

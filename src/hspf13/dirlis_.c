@@ -57,7 +57,7 @@
         /*
          *  Allocate space for ls command.
          */
-            cpCmd = (char *) Malloc(*ipLen + 4);
+            cpCmd = (char *) malloc(*ipLen + 4);
             if (cpCmd == NULL)
             {
                 *ipStat = 1;
@@ -84,7 +84,7 @@
             /*
              *  Free the command buffer
              */
-                Free((void *) cpCmd);
+                free((void *) cpCmd);
             }
 
             if (!*ipStat)

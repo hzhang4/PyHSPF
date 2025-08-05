@@ -71,10 +71,12 @@
  *  + + + DUMMY ARGUMENTS + + +
  */
     void        *vpPtr;
+    int          iSize;
 /*
  *  + + + ARGUMENT DEFINITIONS + + +
  *  vpPtr   - Pointer to array
- */
+ *  iSize   - Size to allocate
+*/
 {
 /*
  *  + + + LOCALS + + +
